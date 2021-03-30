@@ -3,7 +3,7 @@
 baseURL = 'https://scala2.brucemaa.cn/'
 title = 'Scala2 官方文档'
 theme = 'hugo-book'
-defaultContentLanguage = 'zh'
+defaultContentLanguage = 'en'
 
 # Book configuration
 disablePathToLower = true
@@ -25,23 +25,23 @@ enableGitInfo = true
 [languages.zh]
   languageName = '中文'
   contentDir = 'content'
-  weight = 1
+  weight = 2
 
 [languages.en]
   languageName = 'English'
   contentDir = 'content.en'
-  weight = 2
+  weight = 1
 
 [menu]
 # [[menu.before]]
 [[menu.after]]
   name = "Github"
-  url = "https://github.com/alex-shpak/hugo-book"
+  url = "https://github.com/brucemaa/scala2-doc"
   weight = 10
 
 [[menu.after]]
-  name = "Hugo Themes"
-  url = "https://themes.gohugo.io/hugo-book/"
+  name = "Blog"
+  url = "https://brucemaa.cn/"
   weight = 20
 
 [params]

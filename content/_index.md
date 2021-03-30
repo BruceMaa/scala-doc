@@ -1,41 +1,67 @@
 ---
-title: Introduction
+title: SCALA 2
 type: docs
+bookToc: false
 ---
 
-# Acerbo datus maxime
+# First Steps...
 
 {{< columns >}}
-## Astris ipse furtiva
+## GETTING STARTED
 
-Est in vagis et Pittheus tu arge accipiter regia iram vocatur nurus. Omnes ut
-olivae sensit **arma sorori** deducit, inesset **crudus**, ego vetuere aliis,
-modo arsit? Utinam rapta fiducia valuere litora _adicit cursu_, ad facies
+Install Scala on your computer and start writing some Scala code!
 
 <--->
 
-## Suis quot vota
+## Tour of Scala
 
-Ea _furtique_ risere fratres edidit terrae magis. Colla tam mihi tenebat:
-miseram excita suadent es pecudes iam. Concilio _quam_ velatus posset ait quod
-nunc! Fragosis suae dextra geruntur functus vulgata.
+Bite-sized introductions to core language features.
+
+<--->
+
+## Scala Book
+
+An online book introducing the main language features.
+
 {{< /columns >}}
 
 
-## Tempora nisi nunc
+# Returning Users
 
-Lorem **markdownum** emicat gestu. Cannis sol pressit ducta. **Est** Idaei,
-tremens ausim se tutaeque, illi ulnis hausit, sed, lumina cutem. Quae avis
-sequens!
+{{< columns >}}
+## API
 
-    var panel = ram_design;
-    if (backup + system) {
-        file.readPoint = network_native;
-        sidebar_engine_device(cell_tftp_raster,
-                dual_login_paper.adf_vci.application_reader_design(
-                graphicsNvramCdma, lpi_footer_snmp, integer_model));
-    }
+API documentation for every version of Scala.
 
-## Locis suis novi cum suoque decidit eadem
+<--->
 
-Idmoniae ripis, at aves, ali missa adest, ut _et autem_, et ab?
+## Overviews
+
+In-depth documentation covering many of Scala's features.
+
+<--->
+
+## Style Guide
+
+An in-depth guide on how to write idiomatic Scala code.
+
+{{< /columns >}}
+
+{{< columns >}}
+## Cheatsheet
+
+A handy cheatsheet covering the basics of Scala's syntax.
+
+<--->
+
+## Scala FAQ
+
+Answers to frequently-asked questions about Scala.
+
+<--->
+
+## Language Spec
+
+Scala's formal language specification.
+
+{{< /columns >}}
