@@ -1,3 +1,8 @@
+---
+weight: 1
+bookFlatSection: true
+title: "GETTING STARTED"
+---
 
 ## Try Scala without installing anything 
 You can [try Scala in your browser](https://scastie.scala-lang.org/MHc7C9iiTbGfeSAvg8CKAA), with access to all Scala compilers and 
@@ -12,13 +17,14 @@ The Scala installer is a tool named `cs` that ensures that a JVM and standard Sc
 
 * Download the `cs` tool and execute the `setup` command
 
-<div class="main-download">
-    <div id="download-step-one">
-        <p>Follow <a href="https://get-coursier.io/docs/cli-overview.html#install-native-launcher" target="_blank">the instructions to install the <code>cs</code> launcher</a> then run:</p>
-        <p><code>$ ./cs setup</code></p>
-    </div>
-</div>
+```bash
+$ brew install coursier/formulas/coursier && cs setup
+```
+Alternatively, if you don't use Homebrew
 
+```bash
+$ curl -Lo cs https://git.io/coursier-cli-macos && chmod +x cs && (xattr -d com.apple.quarantine cs || true) && ./cs setup
+```
 
 Along with managing JVMs, it also installs useful command line tools: 
 [Ammonite](https://ammonite.io/), 
@@ -34,7 +40,7 @@ For more information, read [coursier-cli documentation](https://get-coursier.io/
 1. if you don't have Java 8 or 11 installed, download 
 Java from [Oracle Java 8](https://www.oracle.com/java/technologies/javase-jdk8-downloads.html), [Oracle Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html), 
 or [AdoptOpenJDK 8/11](https://adoptopenjdk.net/). Refer to [JDK Compatibility](/overviews/jdk-compatibility/overview.html) for Scala/Java compatibility detail.
-1. Install [sbt](https://www.scala-sbt.org/download.html)
+2. Install [sbt](https://www.scala-sbt.org/download.html)
 
 ## Create a Hello-world project with sbt
 To create a project, you can either use a command-line tool or an IDE. 
@@ -45,12 +51,12 @@ sbt is a build tool for Scala. sbt compiles, runs,
 and tests your Scala code. (It can also publish libraries and do many other tasks.)
 
 1. `cd` to an empty folder.
-1. Run the following command `sbt new scala/hello-world.g8`.
+2. Run the following command `sbt new scala/hello-world.g8`.
 This pulls the 'hello-world' template from GitHub.
 It will also create a `target` folder, which you can ignore.
-1. When prompted, name the application `hello-world`. This will
+3. When prompted, name the application `hello-world`. This will
 create a project called "hello-world".
-1. Let's take a look at what just got generated:
+5. Let's take a look at what just got generated:
 
 ```
 - hello-world
@@ -75,19 +81,19 @@ Let's use an IDE to open the project. The most popular ones are IntelliJ and VSC
 They both offer rich IDE features, but you can still use [many other editors.](https://scalameta.org/metals/docs/editors/overview.html)
 ### Using IntelliJ
 1. Download and install [IntelliJ Community Edition](https://www.jetbrains.com/idea/download/)
-1. Install the Scala plugin by following [the instructions on how to install IntelliJ plugins](https://www.jetbrains.com/help/idea/managing-plugins.html)
-1. Open the `build.sbt` file then choose *Open as a project*
+2. Install the Scala plugin by following [the instructions on how to install IntelliJ plugins](https://www.jetbrains.com/help/idea/managing-plugins.html)
+3. Open the `build.sbt` file then choose *Open as a project*
 
 ### Using VSCode with metals 
 1. Download [VSCode](https://code.visualstudio.com/Download)
-1. Install the Metals extension from [the Marketplace](https://marketplace.visualstudio.com/items?itemName=scalameta.metals)
-1. Next, open the directory containing a `build.sbt` file. When prompted to do so, select *Import build*.
+2. Install the Metals extension from [the Marketplace](https://marketplace.visualstudio.com/items?itemName=scalameta.metals)
+3. Next, open the directory containing a `build.sbt` file. When prompted to do so, select *Import build*.
 
 ## Run Hello World
 Open a terminal
 1. `cd` into `hello-world`.
-1. Run `sbt`. This will open up the sbt console.
-1. Type `~run`. The `~` is optional and causes sbt to re-run on every file save,
+2. Run `sbt`. This will open up the sbt console.
+3. Type `~run`. The `~` is optional and causes sbt to re-run on every file save,
 allowing for a fast edit/run/debug cycle. sbt will also generate a `target` directory
 which you can ignore.
 
