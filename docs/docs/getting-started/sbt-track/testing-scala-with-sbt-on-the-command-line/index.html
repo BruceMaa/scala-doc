@@ -1,0 +1,74 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="There are multiple libraries and testing methodologies for Scala, but in this tutorial, we&rsquo;ll demonstrate one popular option from the ScalaTest framework called AnyFunSuite. We assume you know how to create a Scala project with sbt.
+Setup #   On the command line, create a new directory somewhere. cd into the directory and run sbt new scala/scalatest-example.g8 Name the project ScalaTestTutorial. The project comes with ScalaTest as a dependency in the build."><meta name=theme-color content="#FFFFFF"><meta property="og:title" content="Testing Scala with sbt and ScalaTest on the Command Line"><meta property="og:description" content="There are multiple libraries and testing methodologies for Scala, but in this tutorial, we&rsquo;ll demonstrate one popular option from the ScalaTest framework called AnyFunSuite. We assume you know how to create a Scala project with sbt.
+Setup #   On the command line, create a new directory somewhere. cd into the directory and run sbt new scala/scalatest-example.g8 Name the project ScalaTestTutorial. The project comes with ScalaTest as a dependency in the build."><meta property="og:type" content="article"><meta property="og:url" content="https://scala2.brucemaa.cn/docs/getting-started/sbt-track/testing-scala-with-sbt-on-the-command-line/"><meta property="article:modified_time" content="2021-03-31T09:51:08+08:00"><title>Testing Scala with sbt and ScalaTest on the Command Line | Scala2 官方文档</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png type=image/x-icon><link rel=stylesheet href=/book.min.6cd8553a6854f4812343f0f0c8baca31271e686434f381fbe3c7226f66639176.css integrity="sha256-bNhVOmhU9IEjQ/DwyLrKMSceaGQ084H748cib2ZjkXY="><script defer src=/en.search.min.2b5a55410a108528c116803e89a94b57d9c2355a443cd4f28aea102d63d028f5.js integrity="sha256-K1pVQQoQhSjBFoA+ialLV9nCNVpEPNTyiuoQLWPQKPU="></script><script defer src=/sw.min.74a8bb07f0bee86d6bb9a2750f073f14d93c7e4512f28860370cfd879e9719b4.js integrity="sha256-dKi7B/C+6G1ruaJ1Dwc/FNk8fkUS8ohgNwz9h56XGbQ="></script></head><body><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><nav><h2 class=book-brand><a href=/><span>Scala2 官方文档</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li class=book-section-flat><a href=/docs/getting-started/>GETTING STARTED</a><ul><li><a href=/docs/getting-started/intellij-track/building-a-scala-project-with-intellij-and-sbt/>Building a Scala Project with IntelliJ and sbt</a></li><li><a href=/docs/getting-started/sbt-track/getting-started-with-scala-and-sbt-on-the-command-line/>Getting Started with Scala and sbt on the Command Line</a></li><li><a href=/docs/getting-started/intellij-track/getting-started-with-scala-in-intellij/>Getting Started with Scala in IntelliJ</a></li><li><a href=/docs/getting-started/intellij-track/testing-scala-in-intellij-with-scalatest/>Testing Scala in IntelliJ with ScalaTest</a></li><li><a href=/docs/getting-started/sbt-track/testing-scala-with-sbt-on-the-command-line/ class=active>Testing Scala with sbt and ScalaTest on the Command Line</a></li></ul></li></ul><ul><li><a href=https://github.com/brucemaa/scala2-doc target=_blank rel=noopener>Github</a></li><li><a href=https://brucemaa.cn/ target=_blank rel=noopener>Blog</a></li></ul></nav><script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>Testing Scala with sbt and ScalaTest on the Command Line</strong>
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><ul><li><a href=#setup>Setup</a></li><li><a href=#understanding-tests>Understanding tests</a></li><li><a href=#adding-another-test-case>Adding another test case</a></li><li><a href=#conclusion>Conclusion</a></li></ul></li></ul></nav></aside></header><article class=markdown><p>There are multiple libraries and testing methodologies for Scala,
+but in this tutorial, we&rsquo;ll demonstrate one popular option from the ScalaTest framework
+called
+<a href=https://www.scalatest.org/scaladoc/3.2.2/org/scalatest/funsuite/AnyFunSuite.html>AnyFunSuite</a>.
+We assume you know
+<a href=/docs/getting-started/sbt-track/getting-started-with-scala-and-sbt-on-the-command-line/>how to create a Scala project with sbt</a>.</p><h2 id=setup>Setup
+<a class=anchor href=#setup>#</a></h2><ol><li>On the command line, create a new directory somewhere.</li><li><code>cd</code> into the directory and run <code>sbt new scala/scalatest-example.g8</code></li><li>Name the project <code>ScalaTestTutorial</code>.</li><li>The project comes with ScalaTest as a dependency in the <code>build.sbt</code> file.</li><li><code>cd</code> into the directory and run <code>sbt test</code>. This will run the test suite
+<code>CubeCalculatorTest</code> with a single test called <code>CubeCalculator.cube</code>.</li></ol><pre><code>sbt test
+[info] Loading global plugins from /Users/username/.sbt/0.13/plugins
+[info] Loading project definition from /Users/username/workspace/sandbox/my-something-project/project
+[info] Set current project to scalatest-example (in build file:/Users/username/workspace/sandbox/my-something-project/)
+[info] CubeCalculatorTest:
+[info] - CubeCalculator.cube
+[info] Run completed in 267 milliseconds.
+[info] Total number of tests run: 1
+[info] Suites: completed 1, aborted 0
+[info] Tests: succeeded 1, failed 0, canceled 0, ignored 0, pending 0
+[info] All tests passed.
+[success] Total time: 1 s, completed Feb 2, 2017 7:37:31 PM
+</code></pre><h2 id=understanding-tests>Understanding tests
+<a class=anchor href=#understanding-tests>#</a></h2><ol><li>Open up two files in a text editor:<ul><li><code>src/main/scala/CubeCalculator.scala</code></li><li><code>src/test/scala/CubeCalculatorTest.scala</code></li></ul></li><li>In the file <code>CubeCalculator.scala</code>, you&rsquo;ll see how we define the function <code>cube</code>.</li><li>In the file <code>CubeCalculatorTest.scala</code>, you&rsquo;ll see that we have a class
+named after the object we&rsquo;re testing.</li></ol><pre><code>  import org.scalatest.funsuite.AnyFunSuite
+
+  class CubeCalculatorTest extends AnyFunSuite {
+      test(&quot;CubeCalculator.cube&quot;) {
+          assert(CubeCalculator.cube(3) === 27)
+      }
+  }
+</code></pre><p>Let&rsquo;s go over this line by line.</p><ul><li><code>class CubeCalculatorTest</code> means we are testing the object <code>CubeCalculator</code></li><li><code>extends AnyFunSuite</code> lets us use functionality of ScalaTest&rsquo;s AnyFunSuite class
+such as the <code>test</code> function</li><li><code>test</code> is function that comes from AnyFunSuite that collects
+results from assertions within the function body.</li><li><code>"CubeCalculator.cube"</code> is a name for the test. You can call it anything but
+one convention is &ldquo;ClassName.methodName&rdquo;.</li><li><code>assert</code> takes a boolean condition and determines whether the test passes or fails.</li><li><code>CubeCalculator.cube(3) === 27</code> checks whether the output of the <code>cube</code> function is
+indeed 27. The <code>===</code> is part of ScalaTest and provides clean error messages.</li></ul><h2 id=adding-another-test-case>Adding another test case
+<a class=anchor href=#adding-another-test-case>#</a></h2><ol><li><p>Add another test block with its own <code>assert</code> statement that checks for the cube of <code>0</code>.</p><pre><code>  import org.scalatest.funsuite.AnyFunSuite
+   
+  class CubeCalculatorTest extends AnyFunSuite {
+      test(&quot;CubeCalculator.cube 3 should be 27&quot;) {
+          assert(CubeCalculator.cube(3) === 27)
+      }
+
+      test(&quot;CubeCalculator.cube 0 should be 0&quot;) {
+          assert(CubeCalculator.cube(0) === 0)
+      }
+  }
+</code></pre></li><li><p>Execute <code>sbt test</code> again to see the results.</p><pre><code>sbt test
+[info] Loading project definition from C:\projects\scalaPlayground\scalatestpractice\project
+[info] Loading settings for project root from build.sbt ...
+[info] Set current project to scalatest-example (in build file:/C:/projects/scalaPlayground/scalatestpractice/)
+[info] Compiling 1 Scala source to C:\projects\scalaPlayground\scalatestpractice\target\scala-2.13\test-classes ...
+[info] CubeCalculatorTest:
+[info] - CubeCalculator.cube 3 should be 27
+[info] - CubeCalculator.cube 0 should be 0
+[info] Run completed in 257 milliseconds.
+[info] Total number of tests run: 2
+[info] Suites: completed 1, aborted 0
+[info] Tests: succeeded 2, failed 0, canceled 0, ignored 0, pending 0
+[info] All tests passed.
+[success] Total time: 3 s, completed Dec 4, 2019 10:34:04 PM
+</code></pre></li></ol><h2 id=conclusion>Conclusion
+<a class=anchor href=#conclusion>#</a></h2><p>You&rsquo;ve seen one way to test your Scala code. You can learn more about
+ScalaTest&rsquo;s FunSuite on the
+<a href=https://www.scalatest.org/getting_started_with_fun_suite>official website</a>. You can also check out other testing frameworks such as
+<a href=https://www.scalacheck.org/>ScalaCheck</a> and
+<a href=https://etorreborre.github.io/specs2/>Specs2</a>.</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div class=book-languages tabindex=0 aria-haspopup=true><ul><li class="flex align-center"><img src=/svg/translate.svg class=book-icon alt=Languages>
+English</li></ul><ul class=book-languages-list><li class=active><a href=https://scala2.brucemaa.cn/ class="flex align-center"><img src=/svg/translate.svg class=book-icon alt=Languages>
+English</a></li><li><a href=https://scala2.brucemaa.cn/zh/ class="flex align-center"><img src=/svg/translate.svg class=book-icon alt=Languages>
+中文</a></li></ul></div><div><a class="flex align-center" href=https://github.com/brucemaa/scala2-doc/commit/83aa09332a40621625201a68a1565df593e67d4c title="Last modified by BruceMaa | 2021-03-31" target=_blank rel=noopener><img src=/svg/calendar.svg class=book-icon alt=Calendar>
+<span>2021-03-31</span></a></div><div><a class="flex align-center" href=https://github.com/brucemaa/scala2-doc/edit/master/content.en/docs/getting-started/sbt-track/testing-scala-with-sbt-on-the-command-line.md target=_blank rel=noopener><img src=/svg/edit.svg class=book-icon alt=Edit>
+<span>Edit this page</span></a></div></div></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><nav id=TableOfContents><ul><li><ul><li><a href=#setup>Setup</a></li><li><a href=#understanding-tests>Understanding tests</a></li><li><a href=#adding-another-test-case>Adding another test case</a></li><li><a href=#conclusion>Conclusion</a></li></ul></li></ul></nav></aside></main></body></html>
